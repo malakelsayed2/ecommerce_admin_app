@@ -1,4 +1,6 @@
+import 'package:ecommerce_admin_app/models/category_model.dart';
 import 'package:ecommerce_admin_app/providers/category_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -191,6 +193,14 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                                   ),
                                 ),
                               ),
+                              IconButton(
+                                onPressed: () {
+                                  ref
+                                      .read(categoryControllerProvider.notifier)
+                                      .deleteCategory(category);
+                                },
+                                icon: Icon(CupertinoIcons.delete),
+                              ),
                             ],
                           ),
                         );
@@ -256,6 +266,15 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
         loading: () => const Center(child: CircularProgressIndicator()),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFF1E2B3C),
+        child: Text(
+          '+',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
         onPressed: () {
           showModalBottomSheet(
             context: context,
@@ -380,6 +399,14 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                             final categoryName = categoryController.text.trim();
 
                             if (categoryName.isNotEmpty) {
+                              final newCat = CategoryModel(
+                                id: "",
+                                name: categoryName,
+                              );
+                              ref
+                                  .read(categoryControllerProvider.notifier)
+                                  .addCategory(newCat);
+                              categoryController.clear();
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -391,7 +418,7 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF005DCC),
+                            backgroundColor: const Color(0xFF1E2B3C),
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
