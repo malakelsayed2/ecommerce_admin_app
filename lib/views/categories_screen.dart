@@ -53,53 +53,6 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
               ),
               child: Column(
                 children: [
-                  // Top section
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      children: [
-                        const Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Category\nList',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF2D3A4A),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          flex: 3,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Search categories...',
-                              prefixIcon: const Icon(Icons.search),
-                              filled: true,
-                              fillColor: const Color(0xFFF4F7FC),
-                              contentPadding: const EdgeInsets.symmetric(
-                                vertical: 0,
-                                horizontal: 12,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
-                                  color: Color(0xFFD9E1F2),
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
-                                  color: Color(0xFFD9E1F2),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
 
                   // Table header
                   Container(
@@ -208,55 +161,6 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                     ),
                   ),
 
-                  // Bottom pagination area
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                    decoration: const BoxDecoration(
-                      border: Border(top: BorderSide(color: Color(0xFFE3E8F0))),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Showing ${data.length} of ${data.length} categories',
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF6B7280),
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.chevron_left),
-                        ),
-                        Container(
-                          width: 34,
-                          height: 34,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF1565D8),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: const Text(
-                            '1',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        TextButton(onPressed: () {}, child: const Text('2')),
-                        TextButton(onPressed: () {}, child: const Text('3')),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.chevron_right),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
