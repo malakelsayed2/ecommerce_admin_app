@@ -26,3 +26,7 @@ final categoryControllerProvider =
       final repo = ref.watch(catRepoProvider);
       return CategoryController(repo);
     });
+
+
+
+
