@@ -1,5 +1,6 @@
 import 'package:ecommerce_admin_app/models/category_model.dart';
 import 'package:ecommerce_admin_app/providers/category_provider.dart';
+import 'package:ecommerce_admin_app/views/products_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -99,62 +100,73 @@ class _CategoriesScreenState extends ConsumerState<CategoriesScreen> {
                       itemBuilder: (context, index) {
                         final category = data[index];
 
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 14,
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 42,
-                                      height: 42,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFEAF1FF),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: const Icon(
-                                        Icons.category_outlined,
-                                        color: Color(0xFF246BFD),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Text(
-                                        category.name,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xFF2D3A4A),
+                        return InkWell(
+                          onTap: () {
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductsScreen(categoryName: category.name,),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 42,
+                                        height: 42,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFEAF1FF),
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: const Icon(
+                                          Icons.category_outlined,
+                                          color: Color(0xFF246BFD),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  category.name,
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    color: Color(0xFF5F6C7B),
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                        child: Text(
+                                          category.name,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xFF2D3A4A),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  ref
-                                      .read(categoryControllerProvider.notifier)
-                                      .deleteCategory(category);
-                                },
-                                icon: Icon(CupertinoIcons.delete),
-                              ),
-                            ],
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    category.name,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      color: Color(0xFF5F6C7B),
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    ref
+                                        .read(categoryControllerProvider.notifier)
+                                        .deleteCategory(category);
+                                  },
+                                  icon: const Icon(CupertinoIcons.delete),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
